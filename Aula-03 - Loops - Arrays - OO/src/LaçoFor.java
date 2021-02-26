@@ -9,5 +9,4 @@ public class LaçoFor {
 			System.out.println(num+" X "+i+" = "+(num * i));
 		}
 	}
-
 }
