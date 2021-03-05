@@ -13,6 +13,9 @@ public class TesteCirculos {
 		c2.x = 2.1f;
 		c2.y = 1.92f;
 		c2.print();
+		// Criando objeto circulo - c3
+		Circulos c3 = new Circulos(3, 2, 5.2f);
+		c3.print();
 	}
 
 }

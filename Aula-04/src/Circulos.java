@@ -4,6 +4,20 @@ public class Circulos {
 	float y;
 	float raio;
 	
+	Circulos(){
+	}
+	
+	Circulos(float x, float y, float r){
+		this.x = x;
+		this.y = y;
+		this.raio = r;
+	}	
+	
+	Circulos(float x, float y){
+		this.x = x;
+		this.y = y;
+	}
+	
 	public void move(float x, float y) {
 		this.x = x;
 		this.y = y;
