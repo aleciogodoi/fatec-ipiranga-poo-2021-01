@@ -16,6 +16,7 @@ public class TesteCirculos {
 		// Criando objeto circulo - c3
 		Circulos c3 = new Circulos(3, 2, 5.2f);
 		c3.print();
+		System.out.println(c3.toString());
 	}
 
 }
