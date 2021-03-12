@@ -1,13 +1,13 @@
 import javax.swing.JOptionPane;
 public class Animal {
 	// Atributos
-	String nome;
-	String classe;
-	String familia;
-	int idade;
-	int caloria;
-	int forca;
-	boolean estado;
+	private String nome;
+	private String classe;
+	private String familia;
+	private int idade;
+	private int caloria;
+	private int forca;
+	private boolean estado;
 	
 	Animal(){
 		this.nascer();
@@ -20,6 +20,32 @@ public class Animal {
 		caloria = 10;
 		forca = 10;
 		estado = true;
+	}
+	
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getClasse() {
+		return classe;
+	}
+	public String getFamilia() {
+		return familia;
+	}
+	public int getIdade() {
+		return idade;
+	}
+	public int getCaloria() {
+		return caloria;
+	}
+	public int getForca() {
+		return forca;
+	}
+	public boolean isEstado() {
+		return estado;
 	}
 	public void morrer() {
 		this.forca = 0;

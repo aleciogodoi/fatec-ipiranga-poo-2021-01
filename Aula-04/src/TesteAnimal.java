@@ -27,6 +27,8 @@ public class TesteAnimal {
 				rex.morrer();
 				break;	
 			}
+	
+			System.out.println(rex);
 		} while(opcao!=0);	
 	}
 }
