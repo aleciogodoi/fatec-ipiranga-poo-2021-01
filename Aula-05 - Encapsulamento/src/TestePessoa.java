@@ -15,6 +15,11 @@ public class TestePessoa {
 		maria.setAltura(1.71f);
 		maria.setPeso(63.21f);
 		System.out.println(maria);
+		
+		outrasClasses.Hello hello = new outrasClasses.Hello();
+		hello.main(args);
+		//hello.boaNoite();
+		//hello.bomDia();
 	}
 
 }
