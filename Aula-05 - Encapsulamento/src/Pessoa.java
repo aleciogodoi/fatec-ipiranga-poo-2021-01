@@ -1,6 +1,8 @@
 
 public class Pessoa {
 	// Atributos
+	public final static int TEMPERATURA_MAXIMA = 42;
+	private static int totalPessoas;
 	private String cpf;
 	private String nome;
 	private float peso;
@@ -8,14 +10,31 @@ public class Pessoa {
 	
 	// Construtores
 	public Pessoa() {
+		this.totalPessoas++;
 	}
 
 	public Pessoa(String cpf, String nome, float peso, float altura) {
+		this();             // chama o construtor sem parametros
+		this.cpf = cpf;
+		this.nome = nome;
+		this.peso = peso;
+		this.altura = altura;
+	}
+	
+	public Pessoa(float peso, String nome, String cpf,  float altura) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.peso = peso;
 		this.altura = altura;
+	}
+
+	public Pessoa(String c, String n) {
+		super();
+		this.cpf = c;
+		this.nome = n;
+		//this.peso = p;
+		//this.altura = a;
 	}
 
 	@Override
@@ -55,4 +74,9 @@ public class Pessoa {
 		this.peso = peso;
 	}
 
+	public static int getTotalPessoas() {
+		return totalPessoas;
+	}
+
+	
 }
