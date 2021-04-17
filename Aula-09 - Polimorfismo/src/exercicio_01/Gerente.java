@@ -6,7 +6,6 @@ public class Gerente extends Funcionario{
 	private String area;
 
 	public Gerente() {
-
 	}
 
 	public Gerente(String nome, LocalDate nascimento, float salario, String area) {
