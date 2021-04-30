@@ -16,7 +16,7 @@ public class Teste {
 		System.out.println(t1);
 		t1.draw();
 		
-		Circulo c1 = new Circulo("verde", 5);
+		Circulo c1 = new Circulo("verde ", 5);
 		System.out.println(c1);
 		c1.draw();
 	}
