@@ -17,10 +17,10 @@ public class Exemplo_TryCatch {
 		try {
 			n1 = Integer.valueOf(JOptionPane.showInputDialog("Entre com n1:"));
 			n2 = Integer.valueOf(JOptionPane.showInputDialog("Entre com n2:"));
-		} catch(NumberFormatException ex) {
+		} catch(NumberFormatException  ex ) {
 			flagEx = true;
 			JOptionPane.showMessageDialog(null,"n1 e n2 devem ser INTEIROS!!!");
-		}
+		} 
 	}
 	
 	public static void divide() {
