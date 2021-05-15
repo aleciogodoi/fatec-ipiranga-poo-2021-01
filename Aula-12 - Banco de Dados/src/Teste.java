@@ -8,6 +8,9 @@ public class Teste {
 	public static void main(String[] args) {
 		// String com comando SQL
 		String sql = "Select IdEmpregado, NomeEmpregado From Empregado;";
+		String insert = "INSERT INTO EMPREGADO "
+				+ "(IDEMPREGADO, NOMEEMPREGADO, IDDEPTO, CARGO, TEMPO_EMP, SALARIO, COMISSAO) " + 
+				"VALUES (370,'ALEX', 84,'ATEND', 5, CAST(3000.00 AS DECIMAL(10, 2)), NULL);";
 		// Criação de objeto para execução de comandos SQL
 		Statement comandoSQL;
 		// Criação de um objeto para resultado de Select's
@@ -18,6 +21,15 @@ public class Teste {
 		// Criação de uma conexão com o BD
 		Conexao conexao = new Conexao();
 		conn = conexao.abrir();
+		
+		try {
+			// Execução de instruções SQL
+			comandoSQL = conn.createStatement();
+			// Executar comando SQL Insert
+			comandoSQL.executeUpdate(insert);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		try {
 			// Execução de instruções SQL
