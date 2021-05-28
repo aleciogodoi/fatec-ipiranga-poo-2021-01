@@ -5,17 +5,18 @@ import javax.swing.JOptionPane;
 public class Teste {
 
 	public static void main(String[] args) {
-		Connection conn;
-		Conexao conexao = new Conexao();
-		conn = conexao.abrir();
-		
-		// Testar find
+		// Teste find
 		JOptionPane.showMessageDialog(null, TipoDespesaDAO.find(1));
 		
-		// Testar getAll
+		// Teste getAll
 		JOptionPane.showMessageDialog(null, TipoDespesaDAO.getAll());
+
+		// Teste delete
+		TipoDespesaDAO.delete(1);
 		
-		conexao.fechar(conn);
+		// Teste update
+		TipoDespesaDAO.update(new TipoDespesa(1, "Contas de Consumo"));
+		
 	}
 
 }

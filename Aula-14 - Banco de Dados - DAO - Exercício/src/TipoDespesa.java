@@ -10,6 +10,11 @@ public class TipoDespesa {
 	public TipoDespesa(String descrTipo) {
 		this.descrTipo = descrTipo;
 	}
+	
+	public TipoDespesa(int idTipo, String descrTipo) {
+		this.idTipo = idTipo;
+		this.descrTipo = descrTipo;
+	}
 
 	public int getIdTipo() {
 		return idTipo;

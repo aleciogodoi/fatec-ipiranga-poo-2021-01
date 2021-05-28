@@ -10,9 +10,60 @@ public class TipoDespesaDAO {
 	}
 	
 	public static void update(TipoDespesa tipoDespesa) {
+		// String com comando SQL
+		String sql = "Update TipoDespesa Set descrTipo=? Where idTipo=?";
+
+		// Criação de objeto para execução de comandos SQL
+		PreparedStatement comandoSQL;
+		
+		// Objeto para conexão com o BD
+		Connection conn;
+		// Criação de uma conexão com o BD
+		Conexao conexao = new Conexao();
+		conn = conexao.abrir();
+
+		try {
+			// Execução de instruções SQL
+			comandoSQL = conn.prepareStatement(sql);
+		
+			// Set Parametro e executa
+			comandoSQL.setString(1, tipoDespesa.getDescrTipo());
+			comandoSQL.setInt(2, tipoDespesa.getIdTipo());
+			comandoSQL.executeUpdate();
+			
+			System.out.println();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conexao.fechar(conn);
 	}
 	
 	public static void delete(int idTipo) {
+		// String com comando SQL
+		String sql = "Delete From TipoDespesa Where idTipo = ?";
+
+		// Criação de objeto para execução de comandos SQL
+		PreparedStatement comandoSQL;
+		
+		// Objeto para conexão com o BD
+		Connection conn;
+		// Criação de uma conexão com o BD
+		Conexao conexao = new Conexao();
+		conn = conexao.abrir();
+
+		try {
+			// Execução de instruções SQL
+			comandoSQL = conn.prepareStatement(sql);
+		
+			// Set Parametro e executa
+			comandoSQL.setInt(1, idTipo);
+			comandoSQL.executeUpdate();
+			
+			System.out.println();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conexao.fechar(conn);
 	}
 	
 	public static TipoDespesa find(int idTipo) {
