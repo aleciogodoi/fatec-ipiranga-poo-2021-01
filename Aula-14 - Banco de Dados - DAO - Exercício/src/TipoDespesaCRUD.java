@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 public class TipoDespesaCRUD {
 
 	public static void main(String[] args) {
+		TipoDespesa tipoDespesa;
 		int opcao = 0;
 		do {
 			opcao = menu();
@@ -13,11 +14,24 @@ public class TipoDespesaCRUD {
 				TipoDespesaDAO.insert(entradaDados());
 				break;
 			case 2:
-				JOptionPane.showMessageDialog(null, TipoDespesaDAO.find(entradaId()));
+				tipoDespesa = TipoDespesaDAO.find(entradaId());
+				if (tipoDespesa.getIdTipo()==0) {
+					JOptionPane.showMessageDialog(null,"Despesa não Encontrada!");
+				} else {
+					JOptionPane.showMessageDialog(null, tipoDespesa);
+				};
 				break;
 			case 3:
+				tipoDespesa = TipoDespesaDAO.find(entradaId());
+				if (tipoDespesa.getIdTipo()==0) {
+					JOptionPane.showMessageDialog(null,"Despesa não Encontrada!");
+				} else {
+					tipoDespesa = entradaDados(tipoDespesa);
+					TipoDespesaDAO.update(tipoDespesa);
+				}
 				break;
 			case 4:
+				TipoDespesaDAO.delete(entradaId());
 				break;
 			case 5:
 				imprimir(TipoDespesaDAO.getAll());
@@ -48,6 +62,11 @@ public class TipoDespesaCRUD {
 	public static TipoDespesa entradaDados() {
 		TipoDespesa tipoDespesa = new TipoDespesa();
 		tipoDespesa.setDescrTipo(JOptionPane.showInputDialog("Tipo Despesa:"));
+		return tipoDespesa;
+	}	
+	
+	public static TipoDespesa entradaDados(TipoDespesa tipoDespesa) {
+		tipoDespesa.setDescrTipo(JOptionPane.showInputDialog("Tipo Despesa:", tipoDespesa.getDescrTipo()));
 		return tipoDespesa;
 	}
 	
