@@ -7,17 +7,17 @@ public class Conexao {
 		Connection conn;
 		try {
 			// Verifica se existe o driver para o projeto
-			//Class.forName("org.sqlite.JDBC");  // SQLite
-			Class.forName("com.mysql.cj.jdbc.Driver"); // MySQL
+			Class.forName("org.sqlite.JDBC");  // SQLite
+			//Class.forName("com.mysql.cj.jdbc.Driver"); // MySQL
 			System.out.println("Driver JDBC encontrado!!!");
 			// Cria um URL - Endereço para conexão com o BD
-			//String pathBD = System.getProperty("user.dir").replace("\\", "/");
-			//String bdUrl = "jdbc:sqlite:"+pathBD+"/bd/poo.db";
-			String bdUrl = "jdbc:mysql://localhost:3306/poo?useTimezone=true&serverTimezone=UTC";
+			String pathBD = System.getProperty("user.dir").replace("\\", "/");
+			String bdUrl = "jdbc:sqlite:"+pathBD+"/bd/poo.db";
+			//String bdUrl = "jdbc:mysql://localhost:3306/poo?useTimezone=true&serverTimezone=UTC";
 			System.out.println(bdUrl);
 			// Cria conexão com o BD
-			//conn = DriverManager.getConnection(bdUrl);
-			conn = DriverManager.getConnection(bdUrl,"ale","ale");
+			conn = DriverManager.getConnection(bdUrl);
+			//conn = DriverManager.getConnection(bdUrl,"ale","ale");
 			System.out.println("Conexão Aberta!!!");
 			return conn;
 		} catch (ClassNotFoundException e) {
