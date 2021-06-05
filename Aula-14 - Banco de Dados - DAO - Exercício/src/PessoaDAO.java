@@ -182,4 +182,115 @@ public class PessoaDAO {
 		return pessoas;
 	}
 
+	public static void insertDespesa(int idPessoa, Despesa despesa) {
+		// String com comando SQL
+		String sql = "Insert Into DespesaPessoa (idPessoa, descrDespesa, dataDespesa, idTipo, valor) Values (?, ?, ?, ?, ?)";
+
+		// Criação de objeto para execução de comandos SQL
+		PreparedStatement comandoSQL;
+		
+		// Objeto para conexão com o BD
+		Connection conn;
+		// Criação de uma conexão com o BD
+		Conexao conexao = new Conexao();
+		conn = conexao.abrir();
+
+		try {
+			// Execução de instruções SQL
+			comandoSQL = conn.prepareStatement(sql);
+		
+			// Set Parametro e executa
+			comandoSQL.setInt(1, idPessoa);
+			comandoSQL.setString(2, despesa.getDescr());
+			comandoSQL.setDate(3, despesa.getData());
+			comandoSQL.setInt(4, despesa.getTipoDespesa().getIdTipo());
+			comandoSQL.setFloat(5, despesa.getValor());
+			comandoSQL.executeUpdate();
+			
+			System.out.println();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conexao.fechar(conn);		
+	}
+	
+	public static ArrayList<Despesa> getAllDespesa(int idPessoa){
+		ArrayList<Despesa> despesas = new ArrayList<Despesa>();
+		// String com comando SQL
+		String sql = 
+				"Select " + 
+				" dp.idDespesa," + 
+				" dp.descrDespesa," + 
+				" dp.idTipo," + 
+				" td.descrTipo," + 
+				" dp.dataDespesa," + 
+				" dp.valor " + 
+				"From DespesaPessoa dp " + 
+				"Inner Join TipoDespesa td On td.idTipo = dp.idTipo " + 
+				"Where dp.idPessoa=?";
+
+		// Criação de objeto para execução de comandos SQL
+		PreparedStatement comandoSQL;
+		// Criação de um objeto para resultado de Select's
+		ResultSet rs;
+
+		// Objeto para conexão com o BD
+		Connection conn;
+		// Criação de uma conexão com o BD
+		Conexao conexao = new Conexao();
+		conn = conexao.abrir();
+
+		try {
+			// Execução de instruções SQL
+			comandoSQL = conn.prepareStatement(sql);
+
+			// Set Parametro e executa
+			comandoSQL.setInt(1, idPessoa);
+			rs = comandoSQL.executeQuery();
+			
+			while (rs.next()) { // lê uma linha do ResultSet
+				Despesa despesa = new Despesa();
+				despesa.setIdDespesa(rs.getInt("idDespesa"));
+				despesa.setDescr(rs.getString("descrDespesa"));
+				despesa.setData(rs.getDate("dataDespesa"));
+				despesa.setTipoDespesa(new TipoDespesa(rs.getInt("idTipo"), rs.getString("descrTipo")));
+				despesa.setValor(rs.getFloat("valor"));
+				despesas.add(despesa);
+			}
+			
+			System.out.println();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conexao.fechar(conn);
+		return despesas;		
+	}
+
+	public static void deleteDespesa(int idDespesa) {
+		// String com comando SQL
+		String sql = "Delete From DespesaPessoa Where idDespesa = ?";
+
+		// Criação de objeto para execução de comandos SQL
+		PreparedStatement comandoSQL;
+		
+		// Objeto para conexão com o BD
+		Connection conn;
+		// Criação de uma conexão com o BD
+		Conexao conexao = new Conexao();
+		conn = conexao.abrir();
+
+		try {
+			// Execução de instruções SQL
+			comandoSQL = conn.prepareStatement(sql);
+		
+			// Set Parametro e executa
+			comandoSQL.setInt(1, idDespesa);
+			comandoSQL.executeUpdate();
+			
+			System.out.println();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conexao.fechar(conn);
+	}
 }

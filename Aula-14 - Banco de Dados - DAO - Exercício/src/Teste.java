@@ -31,10 +31,41 @@ public class Teste {
 		//PessoaDAO.delete(1);
 		//PessoaDAO.delete(2);
 
-		System.out.println(PessoaDAO.find(4));
-		System.out.println(PessoaDAO.find(5));
-		for (Pessoa pessoa: PessoaDAO.getAll()) 
-			System.out.println(pessoa);
+		//System.out.println(PessoaDAO.find(4));
+		//System.out.println(PessoaDAO.find(5));
+		//for (Pessoa pessoa: PessoaDAO.getAll()) 
+		//	System.out.println(pessoa);
+		
+		/*
+		TipoDespesa t1 = new TipoDespesa(1,"Contas de Consumo");
+
+		Despesa d1 = new Despesa("Conta de Luz",Date.valueOf(LocalDate.of(2021, 6, 1)), t1, 102.25f );
+		PessoaDAO.insertDespesa(4, d1);
+		
+		Despesa d2 = new Despesa("Conta de Água",Date.valueOf(LocalDate.of(2021, 6, 4)), t1, 70.43f );
+		PessoaDAO.insertDespesa(4, d2);
+
+		Despesa d3 = new Despesa("Conta de Luz",Date.valueOf(LocalDate.of(2021, 6, 1)), t1, 100.09f );
+		PessoaDAO.insertDespesa(5, d3);
+		
+		Despesa d4 = new Despesa("Conta de Água",Date.valueOf(LocalDate.of(2021, 6, 4)), t1, 87.55f );
+		PessoaDAO.insertDespesa(5, d4);
+		*/
+
+		Pessoa p1 = PessoaDAO.find(4);
+		p1.setDespesas(PessoaDAO.getAllDespesa(p1.getIdPessoa()));
+		System.out.println(p1);
+		for (Despesa despesa : p1.getDespesas())
+			System.out.println(despesa);
+		
+
+		Pessoa p2 = PessoaDAO.find(5);
+		PessoaDAO.deleteDespesa(4);
+		p2.setDespesas(PessoaDAO.getAllDespesa(p2.getIdPessoa()));
+		System.out.println(p2);
+		for (Despesa despesa : p2.getDespesas())
+			System.out.println(despesa);
+		
 		
 	}
 
