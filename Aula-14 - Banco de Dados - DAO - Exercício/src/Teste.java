@@ -66,6 +66,11 @@ public class Teste {
 		for (Despesa despesa : p2.getDespesas())
 			System.out.println(despesa);
 		
+		p2.getDespesas().get(0).setValor(250.19f);
+		PessoaDAO.UpdateDespesa(p2.getDespesas().get(0));
+		p2.setDespesas(PessoaDAO.getAllDespesa(p2.getIdPessoa()));
+		for (Despesa despesa : p2.getDespesas())
+			System.out.println(despesa);
 		
 	}
 

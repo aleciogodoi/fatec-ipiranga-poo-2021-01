@@ -213,6 +213,38 @@ public class PessoaDAO {
 		}
 		conexao.fechar(conn);		
 	}
+
+	public static void UpdateDespesa(Despesa despesa) {
+		// String com comando SQL
+		String sql = "Update DespesaPessoa set descrDespesa=?, dataDespesa=?, idTipo=?, valor=? Where idDespesa=?";
+
+		// Criação de objeto para execução de comandos SQL
+		PreparedStatement comandoSQL;
+		
+		// Objeto para conexão com o BD
+		Connection conn;
+		// Criação de uma conexão com o BD
+		Conexao conexao = new Conexao();
+		conn = conexao.abrir();
+
+		try {
+			// Execução de instruções SQL
+			comandoSQL = conn.prepareStatement(sql);
+		
+			// Set Parametro e executa
+			comandoSQL.setString(1, despesa.getDescr());
+			comandoSQL.setDate(2, despesa.getData());
+			comandoSQL.setInt(3, despesa.getTipoDespesa().getIdTipo());
+			comandoSQL.setFloat(4, despesa.getValor());
+			comandoSQL.setInt(5, despesa.getIdDespesa());
+			comandoSQL.executeUpdate();
+			
+			System.out.println();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conexao.fechar(conn);		
+	}
 	
 	public static ArrayList<Despesa> getAllDespesa(int idPessoa){
 		ArrayList<Despesa> despesas = new ArrayList<Despesa>();
