@@ -1,4 +1,5 @@
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Pessoa {
 	private int idPessoa;
@@ -7,6 +8,7 @@ public class Pessoa {
 	private String nome;
 	private String email;
 	private float peso;
+	private ArrayList<Despesa> despesas;
 	
 	public Pessoa() {
 	}
@@ -76,9 +78,17 @@ public class Pessoa {
 		this.peso = peso;
 	}
 
+	public ArrayList<Despesa> getDespesas() {
+		return despesas;
+	}
+
+	public void setDespesas(ArrayList<Despesa> despesas) {
+		this.despesas = despesas;
+	}
+
 	@Override
 	public String toString() {
 		return "Pessoa [idPessoa=" + idPessoa + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", nome=" + nome
-				+ ", email=" + email + ", peso=" + peso + "]";
+				+ ", email=" + email + ", peso=" + peso + ", despesas=" + despesas + "]";
 	}
 }
