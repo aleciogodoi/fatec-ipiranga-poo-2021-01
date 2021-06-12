@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class Controle {
@@ -62,10 +64,10 @@ public class Controle {
 				JOptionPane.showMessageDialog(null, tipoDespesa);
 				break;
 			case 5:
-				String dados = "";
-				for(TipoDespesa desp : TipoDespesaDAO.getAll()) 
-					dados += desp + "\n";
-				JOptionPane.showMessageDialog(null, dados);
+				ArrayList<Object> objetos = new ArrayList<Object>();
+				for (TipoDespesa tp: TipoDespesaDAO.getAll())
+					objetos.add(tp);
+				mostraDados(objetos);
 				break;
 			}
 		} while(opcao!=0);
@@ -76,16 +78,30 @@ public class Controle {
 		int opcao = 0;
 		do {
 			opcao = menuItens.input();
+			Pessoa pessoa = new Pessoa();
 			switch(opcao) {
 			case 1:
+				pessoa = PessoaUI.input(pessoa);
+				PessoaDAO.insert(pessoa);
 				break;
 			case 2:
+				pessoa.setIdPessoa(PessoaUI.inputIdPessoa(0));
+				pessoa = PessoaDAO.find(pessoa.getIdPessoa());
+				pessoa = PessoaUI.input(pessoa);
+				PessoaDAO.update(pessoa);
 				break;
 			case 3:
+				PessoaDAO.delete(PessoaUI.inputIdPessoa(0));
 				break;
 			case 4:
+				pessoa = PessoaDAO.find(PessoaUI.inputIdPessoa(0));
+				JOptionPane.showMessageDialog(null, pessoa);
 				break;
 			case 5:
+				ArrayList<Object> objetos = new ArrayList<Object>();
+				for (Pessoa p: PessoaDAO.getAll())
+					objetos.add(p);
+				mostraDados(objetos);
 				break;
 			}
 		} while(opcao!=0);
@@ -111,4 +127,10 @@ public class Controle {
 		} while(opcao!=0);
 	}
 
+	public static void mostraDados(ArrayList<Object> objetos) {
+		String dados = "";
+		for(Object objeto : objetos) 
+			dados += objeto + "\n";
+		JOptionPane.showMessageDialog(null, dados);		
+	}
 }
